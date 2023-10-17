@@ -1,5 +1,5 @@
 {
-    "files.autoSave": "off",
+    "files.autoSave": "afterDelay",
     "editor.fontSize": 16,
     "editor.wordWrap": "off",
     "workbench.activityBar.iconClickBehavior": "toggle",
