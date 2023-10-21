@@ -1,0 +1,66 @@
+<!-- As a heading -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-video">
+      </i> Lista de filmes</span>
+    </div>
+  </nav>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Título </th>
+                    <th> Ano </th>
+                    <th> Sinopse </th>
+                    <th>Data do Cadastro</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor = "let filme of filmes">
+                    <td>{{ filme.id }}</td>
+                    <td>{{ filme.titulo }}</td>
+                    <td>{{ filme.ano }}</td>
+                    <td>{{ filme.sinopse }}</td>
+                    <td>{{ filme.dataCadastro }}</td>
+                     <td> 
+                        <button class="btn btn-primary" 
+                            routerLink="/filme/form/{{ filme.id}}">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="filmeSelecionaDelecao(filme)" data-bs-toggle="modal" data-bs-target="#modalDelecao">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>    
+                </tr>        
+            </tbody>
+        </table>
+    </div>
+    <div id="modalDelecao" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Deseja realmente deletar o filme</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf ="filmeSelecionado">
+                <h4><p>{{ filmeSelecionado.titulo }}</p></h4> 
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="deletarFilme()
+              " data-bs-dismiss="modal" >Confirma</button>
+              <button type="button" class="btn btn-secondary" 
+              data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
