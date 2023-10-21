@@ -3,11 +3,11 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-video"></i>
-        {{ filme.id ? 'Edite o filme': 'Insira o filme do seu interesse!'}} Insira o filme do seu interesse! </span>
+        {{ filme.id ? 'Edite o filme':'Insira o filme do seu interesse!'}}</span>
     </div>
   </nav>
 <form class="container">
-  <form #filmeForm = "ngForm" (ngSubmit) = "OnSubmit()">
+  <form #filmeForm #diretorForm = "ngForm" (ngSubmit) = "OnSubmit()">
     <div clss=" row">
       <div class="col-md-12">
         <div class="alert alert-success" role="alert" *ngIf="success==true">
@@ -34,9 +34,10 @@
       <label for="nome" class="form-label">Título do filme *</label>
       <input type="text" class="form-control" id="inputTitulo" [(ngModel)]="filme.titulo" name="titulo" >
     </div>
+
     <div class="col-12">
         <label for="nome" class="form-label">Diretor *</label>
-        <input type="text" class="form-control" id="#">
+        <input type="text" class="form-control" id="inputNome" [(ngModel)]="diretor.nome" name="nome" >
     </div>
     <div class="col-md-6">
       <label for="inputAddress" class="form-label">Ano de lançamento</label>
@@ -73,6 +74,7 @@
               </div>
         </div>
     </div>
+    
 </form>
 
     

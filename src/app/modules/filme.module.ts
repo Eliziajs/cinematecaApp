@@ -22,6 +22,7 @@ import { FilmeVisualizaComponent } from '../components/filme-visualiza/filme-vis
   exports: [
     FilmeFormComponent,
     FilmeListaComponent,
+    FilmeVisualizaComponent
    
   ] 
 })

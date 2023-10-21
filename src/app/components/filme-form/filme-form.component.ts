@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params} from '@angular/router'
 import {Filme } from 'src/app/domain/Filme'; 
 import { FilmeService } from 'src/app/services/filme.service';
 import { Observable } from 'rxjs';
+import { Diretor } from 'src/app/domain/Diretor';
+import { DiretorService } from 'src/app/services/diretor.service';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { Observable } from 'rxjs';
 export class FilmeFormComponent implements OnInit{
 
   filme!: Filme;
+  diretor!: Diretor;
   success: boolean =false;
   error?: string[];
   id: any;
@@ -20,6 +23,7 @@ export class FilmeFormComponent implements OnInit{
 
   constructor(
     private service: FilmeService, 
+    private diretorService : DiretorService,
     private router: Router,
     private activatedRoute: ActivatedRoute, 
     )

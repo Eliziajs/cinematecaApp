@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'filme-lista', component: FilmeListaComponent},
   { path: 'filme-lista/:id', component: FilmeListaComponent},
   { path: 'filme-visualiza', component: FilmeVisualizaComponent},
+  { path: 'filme-visualiza/:id', component: FilmeVisualizaComponent},
   { path:'', redirectTo: '/filme/lista', pathMatch: 'full'}
 
 ];

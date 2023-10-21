@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TemplateModule } from './template/template.module';
+import { TemplateModule } from './modules/template.module';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './modules/user.module';
 import { FilmeModule } from './modules/filme.module';
