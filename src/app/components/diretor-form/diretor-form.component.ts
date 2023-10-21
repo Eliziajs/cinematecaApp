@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Diretor } from 'src/app/domain/Diretor';
+import { DiretorService } from 'src/app/services/diretor.service';
 
 @Component({
   selector: 'app-diretor-form',
   templateUrl: './diretor-form.component.html',
   styleUrls: ['./diretor-form.component.css']
 })
-export class DiretorFormComponent implements OnInit{
+export class DiretorFormComponent{
 
   diretor!: Diretor;
-  succsses: boolean;
+  succsses!: boolean;
+
+  constructor(diretorService:DiretorService){}
 
 }
