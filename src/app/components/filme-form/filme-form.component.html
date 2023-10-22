@@ -7,7 +7,7 @@
     </div>
   </nav>
 <form class="container">
-  <form #filmeForm #diretorForm = "ngForm" (ngSubmit) = "OnSubmit()">
+  <form #filmeForm = "ngForm" (ngSubmit) = "OnSubmit()">
     <div clss=" row">
       <div class="col-md-12">
         <div class="alert alert-success" role="alert" *ngIf="success==true">
@@ -37,8 +37,9 @@
 
     <div class="col-12">
         <label for="nome" class="form-label">Diretor *</label>
-        <input type="text" class="form-control" id="inputNome" [(ngModel)]="diretor.nome" name="nome" >
+        <input type="text" class="form-control" id="inputNome"  >
     </div>
+    
     <div class="col-md-6">
       <label for="inputAddress" class="form-label">Ano de lançamento</label>
       <input type="text" class="form-control" id="inputAddress" placeholder="Digite o ano" 

@@ -14,7 +14,7 @@ export class DiretorFormComponent implements OnInit{
   diretor!: Diretor;
   success: boolean = false;
   error?: string[];
-  id: any;
+  id?: any;
 
   constructor(
     private diretorService : DiretorService,
@@ -37,7 +37,7 @@ export class DiretorFormComponent implements OnInit{
     )
     }
   })
-   
+   console.log("fkwhsdddddddmomcnkddddd")
 }
 
 OnSubmit(){
@@ -60,5 +60,6 @@ voltarParaLista(){
   this.router.navigate(['/filme-lista'])
  }
 }
+
 
 

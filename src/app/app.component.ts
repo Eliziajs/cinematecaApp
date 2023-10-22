@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Filme } from './domain/Filme';
+import { Diretor } from './domain/Diretor';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,10 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 export class AppComponent {
   title = 'cinematecaApp';
 
+  filme!: Filme;
+  diretor!: Diretor;
+
+  
   ngOnInit(){
 
   }

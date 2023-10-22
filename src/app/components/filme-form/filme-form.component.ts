@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, Input, OnInit,  } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router'
 import {Filme } from 'src/app/domain/Filme'; 
 import { FilmeService } from 'src/app/services/filme.service';
@@ -14,8 +14,10 @@ import { DiretorService } from 'src/app/services/diretor.service';
 })
 export class FilmeFormComponent implements OnInit{
 
-  filme!: Filme;
-  diretor!: Diretor;
+  //filme!: Filme;
+  @Input() filme! : Filme;
+  @Input() diretor!: Diretor;
+  //diretor!: Diretor;
   success: boolean =false;
   error?: string[];
   id: any;
@@ -64,10 +66,9 @@ export class FilmeFormComponent implements OnInit{
       })
   }
 }
-  novoCadastroFilme(){
+ /**  novoCadastroFilme(){
     this.router.navigate(['/filme-visualiza'])
-
-  }
+}**/
   voltarParaLista(){
     this.router.navigate(['/filme-lista'])
    }

@@ -11,7 +11,7 @@
         <table class="table table-condensed table-hover">
             <thead>
                 <tr>
-                    <th> ID </th>
+                    
                     <th> Título </th>
                     <th> Ano </th>
                     <th> Sinopse </th>
@@ -23,15 +23,15 @@
             </thead>
             <tbody>
                 <tr *ngFor = "let filme of filmes">
-                    <td>{{ filme.id }}</td>
-                    <td (click)="irParaFilmeVisualiza()">{{ filme.titulo }}</td>
+                    
+                    <td><a hef="#" routerLink="/filme-visualiza/{{ filme.id}}" >{{ filme.titulo }}</a></td>
                     <td>{{ filme.ano }}</td>
                     <td>{{ filme.sinopse }}</td>
                     <td>{{ filme.data }}</td>
                      <td> 
                         <button class="btn btn-primary" 
-                            routerLink="/filme/form/{{ filme.id}}">
-                        <i class="fa fa-edit"></i>
+                            routerLink="/filme-form/{{ filme.id}}">
+                        <i class="fa fa-edit"></i>Edite
                     </button>
                     </td>
                     <td>
