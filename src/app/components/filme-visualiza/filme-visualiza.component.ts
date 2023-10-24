@@ -1,7 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Filme } from 'src/app/domain/Filme';
 import { FilmeService } from 'src/app/services/filme.service';
+import { DiretorService } from 'src/app/services/diretor.service';
+import { Observable } from 'rxjs';
+import { Diretor } from 'src/app/domain/Diretor';
 
 @Component({
   selector: 'app-filme-visualiza',
@@ -13,7 +16,7 @@ export class FilmeVisualizaComponent {
   @Input() filme! : Filme;
   
  //filme!: Filme;
-  //diretor!: Diretor;
+  diretor!: Diretor;
   success: boolean =false;
   error?: string[];
   id: any;
@@ -31,24 +34,35 @@ export class FilmeVisualizaComponent {
     {}
 
   ngOnInit(): void {
-   
-   /** this.service
-    . getFilmeById(this.id)
-    .subscribe(resposta => this.id = resposta)
     
-  }pegarFilmeId(filme: Filme){
+      let param : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.service
+        .getFilmeById(this.id)
+        .subscribe(
+          response => this.filme =response, 
+          errorResponse =>this.filme = new Filme()
+        )
+        }
+      })
+    
+
+  }
+
+  pegarFilmeId(filme: Filme){
     this.filmeSelecionado = filme;
   }
   
   
   filmeSelecionaVisualizaFilme(filme: Filme){
     this.filmeSelecionado = filme;
-  }**/
+  }
      
-}
-voltarParaLista(){
+
+  voltarParaLista(){
   this.router.navigate(['/filme-lista'])
  }
+
 }
- 
-  

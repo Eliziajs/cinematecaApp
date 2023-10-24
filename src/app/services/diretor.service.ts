@@ -24,11 +24,11 @@ export class DiretorService {
   }
   getDiretor():Observable<Diretor[]>{
     return this.http.get<Diretor[]>
-    (this.apiURL + '/diretor');
+    (this.apiURL + '/diretor/');
   }
   getDiretorById(id: number): Observable<Diretor>{
     return this.http.get<any>
-    (this.apiURL + '/diretor/' +id)
+    (this.apiURL + '/diretor' + id)
   }
 
   deletar(diretor: Diretor):Observable<any>{

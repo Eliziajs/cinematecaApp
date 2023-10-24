@@ -1,8 +1,0 @@
-{
-    "files.autoSave": "afterDelay",
-    "editor.fontSize": 16,
-    "editor.wordWrap": "off",
-    "workbench.activityBar.iconClickBehavior": "toggle",
-    "workbench.view.alwaysShowHeaderActions": true,
-    "application.experimental.rendererProfiling": false
-}
