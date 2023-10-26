@@ -10,8 +10,8 @@ import { UserModule } from './modules/user.module';
 import { FilmeModule } from './modules/filme.module';
 import { FilmeService } from './services/filme.service';
 import { TokenInterceptor } from './token.interceptor';
-import { FormsModule } from '@angular/forms';
 import { DiretorFormComponent } from './components/diretor-form/diretor-form.component';
+import { HomeFerramentaComponent } from './components/home-ferramenta/home-ferramenta.component';
 
 
 @NgModule({
@@ -19,6 +19,7 @@ import { DiretorFormComponent } from './components/diretor-form/diretor-form.com
     AppComponent,
     HomeComponent,
     DiretorFormComponent,
+    HomeFerramentaComponent,
      
   ],
   imports: [

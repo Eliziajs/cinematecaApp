@@ -11,7 +11,8 @@ import { FilmeVisualizaComponent } from '../components/filme-visualiza/filme-vis
   declarations: [
     FilmeFormComponent,
     FilmeListaComponent,
-    FilmeVisualizaComponent
+    FilmeVisualizaComponent,
+    
    
   ],
   imports: [
