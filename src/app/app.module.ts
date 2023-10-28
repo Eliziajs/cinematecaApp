@@ -12,6 +12,7 @@ import { FilmeService } from './services/filme.service';
 import { TokenInterceptor } from './token.interceptor';
 import { DiretorFormComponent } from './components/diretor-form/diretor-form.component';
 import { HomeFerramentaComponent } from './components/home-ferramenta/home-ferramenta.component';
+import { HomeFuncionalidadesComponent } from './components/home-funcionalidades/home-funcionalidades.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HomeFerramentaComponent } from './components/home-ferramenta/home-ferra
     HomeComponent,
     DiretorFormComponent,
     HomeFerramentaComponent,
+    HomeFuncionalidadesComponent,
      
   ],
   imports: [
