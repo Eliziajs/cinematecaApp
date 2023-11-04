@@ -52,18 +52,27 @@ export class FilmeFormComponent implements OnInit{
  
   OnSubmit(){
     if(this.id){
-    this.service.atualizar(this.filme)
-    .subscribe({
-        next: response=>this.success = true,
-        error:erro=>this.error = erro.error
-    })
+    this.service
+    .atualizar(this.filme)
+    .subscribe(response => {
+      this.success = true;
+      console.log(response);
+      this.filme = response;
+   }, errorResponse => {
+     this.error = errorResponse.error.error;
+     //console.log(errorResponse.error.error)
+   })
   }else{
       this.service
       .salvar(this.filme)
-      .subscribe({
-        next: response=>this.success = true,
-        error:erro=>this.error = erro.error
-      })
+      .subscribe(response => {
+        this.success = true;
+        console.log(response);
+        this.filme = response;
+     }, errorResponse => {
+       this.error = errorResponse.error.error;
+       //console.log(errorResponse.error.error)
+     })
   }
 }
  /**  novoCadastroFilme(){

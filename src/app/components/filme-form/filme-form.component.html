@@ -6,8 +6,8 @@
         {{ filme.id ? 'Edite o filme':'Insira o filme do seu interesse!'}}</span>
     </div>
   </nav>
-<form class="container">
-  <form #filmeForm = "ngForm" (ngSubmit) = "OnSubmit()">
+<form class="container" #filmeForm = "ngForm" (ngSubmit) = "OnSubmit()">
+ 
     <div clss=" row">
       <div class="col-md-12">
         <div class="alert alert-success" role="alert" *ngIf="success==true">
@@ -67,7 +67,7 @@
                   <i class="fa-solid fa-paper-plane"  ></i > Enviar </button>
                     <a routerLink="/filme-visualiza"></a>
 
-                  <button type="submit" class="btn btn-primary ml-3" *ngIf="filme.id">
+                  <button type="submit" class="btn btn-primary ml-3" *ngIf="filme.id" >
                     <i class="fa fa-refresh" ></i> Atualizar </button>
                 
                 <button type="submit" class="btn btn-danger ml-3" (click) = "voltarParaLista()">
@@ -75,7 +75,7 @@
               </div>
         </div>
     </div>
-    
-</form>
+  </form>
+
 
     

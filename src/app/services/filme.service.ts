@@ -16,11 +16,11 @@ export class FilmeService {
 
   salvar( filme: Filme) : Observable <Filme>{
     return this.http.post<Filme>
-    (this.apiURL, filme)
+    (this.apiURL + '/filmes', filme)
   }
   atualizar( filme: Filme) : Observable<any>{
     return this.http.put<Filme>
-    (this.apiURL + filme.id, filme)
+    (this.apiURL + '/filmes/'+ filme.id, filme)
      }
 
   getFilmes(): Observable <Filme[]>{ 
