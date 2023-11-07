@@ -13,6 +13,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { DiretorFormComponent } from './components/diretor-form/diretor-form.component';
 import { HomeFerramentaComponent } from './components/home-ferramenta/home-ferramenta.component';
 import { HomeFuncionalidadesComponent } from './components/home-funcionalidades/home-funcionalidades.component';
+import { GeneroComponent } from './components/genero/genero.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HomeFuncionalidadesComponent } from './components/home-funcionalidades/
     DiretorFormComponent,
     HomeFerramentaComponent,
     HomeFuncionalidadesComponent,
+    GeneroComponent,
      
   ],
   imports: [

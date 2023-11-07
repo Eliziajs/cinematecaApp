@@ -16,22 +16,26 @@
                     <th> Ano </th>
                     <th> Sinopse </th>
                     <th>Data do Cadastro</th>
-                    <th></th>
-                    <th></th>
+                    <th>Diretor</th>
+                    
                 </tr>
 
             </thead>
             <tbody>
-                <tr *ngFor = "let filme of filmes">
+                <tr *ngFor = "let filme of filmes" >
                     
-                    <td><a hef="#" routerLink="/filme-visualiza/{{ filme.id}}" >{{ filme.titulo }}</a></td>
+                    <td><a routerLink="/filme-visualiza/{{ filme.id}}" >{{ filme.titulo }}</a></td>
                     <td>{{ filme.ano }}</td>
                     <td>{{ filme.sinopse }}</td>
                     <td>{{ filme.data }}</td>
+                    
+                    <td> {{ diretores.nome}}</td>
+                    
+
                      <td> 
                         <button class="btn btn-primary" 
                             routerLink="/filme-form/{{ filme.id}}">
-                        <i class="fa fa-edit"></i>Edite
+                        <i class="fa fa-edit"></i>
                     </button>
                     </td>
                     <td>

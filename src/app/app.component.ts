@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Filme } from './domain/Filme';
 import { Diretor } from './domain/Diretor';
+import { Genero } from './domain/Genero';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
 
   filme!: Filme;
   diretor!: Diretor;
+  genero!: Genero;
 
   
   ngOnInit(){

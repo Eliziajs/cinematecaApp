@@ -16,7 +16,7 @@ export class DiretorService {
 
   salvarDiretor (diretor: Diretor): Observable<Diretor>{
     return this.http.post<Diretor>
-    (this.apiURL, diretor)
+    (this.apiURL + '/diretor', diretor)
   }
   atualizarDiretor(diretor: Diretor): Observable<any>{
     return this.http.put<Diretor>
@@ -28,7 +28,7 @@ export class DiretorService {
   }
   getDiretorById(id: number): Observable<Diretor>{
     return this.http.get<any>
-    (this.apiURL + '/diretor' + id)
+    (this.apiURL + '/diretor/' + id)
   }
 
   deletar(diretor: Diretor):Observable<any>{

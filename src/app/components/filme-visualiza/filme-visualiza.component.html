@@ -1,13 +1,31 @@
 <div class="row" *ngIf="filme">
     <div class="col-12 col-md-8">
-        <div class="container" >
-           <br>
+        
             <h1 class="display-5" ><strong>{{filme.titulo}}</strong></h1>
             <p><strong> Resumo do filme:</strong> </p>
             <p class="lead text-justify" >{{filme.sinopse}}</p>
-            <p><strong>Gênero:</strong></p>
-            <p *ngIf="diretor" ><strong>Dirigido por: {{diretor.nome}}</strong></p>
-            <p><strong>Ano do lançamento do filme: {{filme.ano}}</strong></p>
+            <div class="container" >
+                <br>
+                <div class="container">
+                 <div class="row">
+                   <div class="col">
+                    <p class="text-black-50">Gênero: <strong>{{genero.nome}}</strong></p>
+                   </div>
+                   <div class="col">
+                    <p class="text-black-50" Dirigido> Por: <strong>{{diretor.nome}}</strong></p>
+                   </div>
+                 </div>
+                 </div><div class="container">
+                     <div class="row">
+                       <div class="col - 6">
+                        <p class="text-black-50">Ano do lançamento: <strong>{{filme.ano}}</strong></p>
+                       </div>
+                       <div class="col-6">
+                        <p class="text-black-50">Inserido em: <strong>{{filme.data}}</strong></p>
+                       </div>
+                     </div>
+                     </div>
+          
             <br>
             
             <div class="mb-3">

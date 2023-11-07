@@ -1,10 +1,13 @@
 import { Component, Input, OnInit,  } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router'
-import {Filme } from 'src/app/domain/Filme'; 
-import { FilmeService } from 'src/app/services/filme.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+
+import { Filme } from 'src/app/domain/Filme'; 
+import { FilmeService } from 'src/app/services/filme.service';
 import { Diretor } from 'src/app/domain/Diretor';
 import { DiretorService } from 'src/app/services/diretor.service';
+
 
 
 @Component({
@@ -17,24 +20,43 @@ export class FilmeFormComponent implements OnInit{
   //filme!: Filme;
   @Input() filme! : Filme;
   @Input() diretor!: Diretor;
+  filmeForms!:FormGroup;
+  diretorForms!: FormGroup;
   //diretor!: Diretor;
   success: boolean =false;
   error?: string[];
   id: any;
-  
+
 
   constructor(
-    private service: FilmeService, 
-    private diretorService : DiretorService,
+    public service: FilmeService, 
+    public diretorService : DiretorService,
     private router: Router,
-    private activatedRoute: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute,
+    //public fb: FormBuilder,
+    //public formGroup: FormGroup 
     )
     { 
     this.filme = new Filme();
+    this.diretor = new Diretor();
+   
   }
-
  
  ngOnInit(): void {
+
+  this.filmeForms = new FormGroup({
+    id: new FormControl(''),
+    titulo: new FormControl('',[Validators.required]),
+    ano: new FormControl('',[Validators.required]),
+    sinopse: new FormControl('',[Validators.required]),
+  });
+
+    this.diretorForms = new FormGroup({
+    id: new FormControl(''),
+    nome: new FormControl('',[Validators.required]),
+  });
+
+  
     let param : Observable<Params> = this.activatedRoute.params
     param.subscribe( urlParams => {
       this.id = urlParams['id'];
@@ -47,32 +69,53 @@ export class FilmeFormComponent implements OnInit{
       )
       }
     })
-     
+    /**let paramDir : Observable<Params> = this.activatedRoute.params
+    paramDir.subscribe( urlParams => {
+      this.id = urlParams['id'];
+      if(this.id){
+      this.diretorService
+      .getDiretorById(this.id)
+      .subscribe(
+        response => this.diretor =response, 
+        errorResponse =>this.diretor = new Diretor()
+      )
+      }
+    })**/
+    
  }
- 
-  OnSubmit(){
-    if(this.id){
+ get titulo(){
+  return this.filmeForms.get('titulo')!;
+ }
+ get ano(){
+  return this.filmeForms.get('ano')!;
+ }
+ get sinopse(){
+  return this.filmeForms.get('sinopse')!;
+ }
+ get nomeDiretor(){
+  return this.filmeForms.get('nome')!;
+ }
+
+
+
+ OnSubmit(){
+  if(this.filmeForms.invalid)
+  return
+
+  if(this.id){
     this.service
     .atualizar(this.filme)
-    .subscribe(response => {
-      this.success = true;
-      console.log(response);
-      this.filme = response;
-   }, errorResponse => {
-     this.error = errorResponse.error.error;
-     //console.log(errorResponse.error.error)
-   })
+    .subscribe({
+      next: response=>this.success = true,
+      error:erro=>this.error = erro.error
+  })
   }else{
       this.service
       .salvar(this.filme)
-      .subscribe(response => {
-        this.success = true;
-        console.log(response);
-        this.filme = response;
-     }, errorResponse => {
-       this.error = errorResponse.error.error;
-       //console.log(errorResponse.error.error)
-     })
+      .subscribe({
+        next: response=>this.success = true,
+        error:erro=>this.error = erro.error
+    })
   }
 }
  /**  novoCadastroFilme(){

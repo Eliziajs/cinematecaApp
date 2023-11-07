@@ -5,6 +5,8 @@ import { FilmeService } from 'src/app/services/filme.service';
 import { DiretorService } from 'src/app/services/diretor.service';
 import { Observable } from 'rxjs';
 import { Diretor } from 'src/app/domain/Diretor';
+import { Genero } from 'src/app/domain/Genero';
+import { GeneroService } from 'src/app/services/genero.service';
 
 @Component({
   selector: 'app-filme-visualiza',
@@ -14,9 +16,10 @@ import { Diretor } from 'src/app/domain/Diretor';
 export class FilmeVisualizaComponent {
 
   @Input() filme! : Filme;
-  
+  @Input() diretor!: Diretor;
+  @Input() genero!: Genero;
  //filme!: Filme;
-  diretor!: Diretor;
+  //diretor!: Diretor;
   success: boolean =false;
   error?: string[];
   id: any;
@@ -27,7 +30,8 @@ export class FilmeVisualizaComponent {
 
   constructor(
     private service: FilmeService, 
-    //private diretorService : DiretorService,
+    private diretorService : DiretorService,
+    private generoService: GeneroService,
     private router: Router,
     private activatedRoute: ActivatedRoute, 
     )
@@ -44,6 +48,31 @@ export class FilmeVisualizaComponent {
         .subscribe(
           response => this.filme =response, 
           errorResponse =>this.filme = new Filme()
+        )
+        }
+      })
+      let paramDir : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.diretorService
+        .getDiretorById(this.id)
+        .subscribe(
+          response => this.diretor =response, 
+          errorResponse =>this.diretor = new Diretor()
+        )
+        }
+      })
+
+      let paramGen : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.generoService
+        .getGeneroById(this.id)
+        .subscribe(
+          response => this.genero =response, 
+          errorResponse =>this.genero = new Genero()
         )
         }
       })

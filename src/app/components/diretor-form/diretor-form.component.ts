@@ -37,7 +37,7 @@ export class DiretorFormComponent implements OnInit{
     )
     }
   })
-   console.log("fkwhsdddddddmomcnkddddd")
+  
 }
 
 OnSubmit(){

@@ -1,4 +1,4 @@
 export class Diretor{
-    id?: number;
+    id!: number;
     nome?:string;
 }
