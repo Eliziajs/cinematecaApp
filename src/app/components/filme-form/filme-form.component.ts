@@ -126,15 +126,3 @@ export class FilmeFormComponent implements OnInit{
    }
 }
 
-/**OnSubmit(){
-  this.service
-    .salvar(this.filme)
-    .subscribe(response => {
-     this.success = true;
-     console.log(response);
-     this.filme = response;
-  }, errorResponse => {
-    this.error = errorResponse.error.error;
-    //console.log(errorResponse.error.error)
-  })
-}**/
