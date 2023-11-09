@@ -14,50 +14,56 @@ import { DiretorService } from 'src/app/services/diretor.service';
 export class FilmeListaComponent implements OnInit {
 
   filmes: Filme[] = [];
-  diretores : Diretor[]=[];
-//@Input() diretor = Diretor!
+  diretores: Diretor[] = [];
+  //@Input() diretor = Diretor!
   filmeSelecionado!: Filme;
   mensagemSucesso!: string;
   mensagemErro!: string;
+  diretor: any;
 
   constructor(
     private service: FilmeService,
     private diretorService: DiretorService,
-    private router: Router) {}
+    private router: Router) { }
 
   ngOnInit(): void {
-   
-      this.service
-      .getFilmes()
-      .subscribe(resposta => this.filmes = resposta,
-      errorResponse =>this.filmes = errorResponse)
-     console.log(this.filmes)
-     this.diretoresSelecionadoPorId();
-     
-  }
- 
-  filmeSelecionaDelecao(filmes: Filme){
-    this.filmeSelecionado = filmes;
-  }
-  diretoresSelecionadoPorId(){
-    this.diretorService
-    .getDiretor()
-    .subscribe(resposta => this.diretores = resposta)
-    console.log(this.diretores)
-   
-  }
-  deletarFilme(){
+
     this.service
-   .deletar(this.filmeSelecionado)
-    .subscribe(response => 
-      this.mensagemSucesso = 'cliente deletado com sucesso!',
-      erro=> 
-      this.mensagemErro = 'Ocorreu um erro ao deletar')
+      .getFilmes()
+      .subscribe((filme: Filme[]) => {
+        this.filmes = filme
+        console.log(this.filmes)
+      })
+    this.diretorService
+      .getDiretor()
+      .subscribe((diretores: Diretor[]) => {
+        this.diretores = diretores
+        console.log(this.diretores)
+      })
 
   }
-  irParaFilmeVisualiza(){
+
+  filmeSelecionaDelecao(filmes: Filme) {
+    this.filmeSelecionado = filmes;
+  }
+
+  diretoresSelecionadoPorId(index: any, diretor: Diretor) {
+    console.log(diretor);
+    return diretor ? diretor.id : undefined;
+  }
+
+  deletarFilme() {
+    this.service
+      .deletar(this.filmeSelecionado)
+      .subscribe(response =>
+        this.mensagemSucesso = 'cliente deletado com sucesso!',
+        erro =>
+          this.mensagemErro = 'Ocorreu um erro ao deletar')
+
+  }
+  irParaFilmeVisualiza() {
     this.router.navigate(['/filme-visualiza'])
-   }
+  }
 
 }
 
