@@ -14,7 +14,7 @@ import { DiretorService } from 'src/app/services/diretor.service';
 export class FilmeListaComponent implements OnInit {
 
   filmes: Filme[] = [];
-  diretores! : Diretor;
+  diretores : Diretor[]=[];
 //@Input() diretor = Diretor!
   filmeSelecionado!: Filme;
   mensagemSucesso!: string;
@@ -27,21 +27,23 @@ export class FilmeListaComponent implements OnInit {
 
   ngOnInit(): void {
    
-     let filme =this.service
+      this.service
       .getFilmes()
-      .subscribe(resposta => this.filmes = resposta)
-     
+      .subscribe(resposta => this.filmes = resposta,
+      errorResponse =>this.filmes = errorResponse)
+     console.log(this.filmes)
+     this.diretoresSelecionadoPorId();
      
   }
  
   filmeSelecionaDelecao(filmes: Filme){
     this.filmeSelecionado = filmes;
   }
-  diretoresSelecionadoPorId(diretores: Diretor){
+  diretoresSelecionadoPorId(){
     this.diretorService
-    .getDiretorById(diretores.id)
+    .getDiretor()
     .subscribe(resposta => this.diretores = resposta)
-    console.log(diretores)
+    console.log(this.diretores)
    
   }
   deletarFilme(){
