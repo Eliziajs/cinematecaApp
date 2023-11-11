@@ -4,6 +4,7 @@ import { Filme } from '../../domain/Filme';
 import { FilmeService } from '../../services/filme.service';
 import { Diretor } from 'src/app/domain/Diretor';
 import { DiretorService } from 'src/app/services/diretor.service';
+import { KeyValue } from '@angular/common';
 
 
 @Component({
@@ -47,9 +48,8 @@ export class FilmeListaComponent implements OnInit {
     this.filmeSelecionado = filmes;
   }
 
-  diretoresSelecionadoPorId(index: any, diretor: Diretor) {
-    console.log(diretor);
-    return diretor ? diretor.id : undefined;
+  valueAscOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+    return a.value.localeCompare(b.value);
   }
 
   deletarFilme() {
