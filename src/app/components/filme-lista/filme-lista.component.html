@@ -27,7 +27,7 @@
           <td>{{ filme.ano }}</td>
           <td>{{ filme.sinopse }}</td>
           <td>{{ filme.data }}</td>
-          <td *ngFor="let diretor of diretores; trackBy:diretoresSelecionadoPorId">{{diretor.nome}}</td>
+          <td *ngFor="let diretor of diretores"> {{diretor.nome}}</td>
           <td>
             <button class="btn btn-primary" routerLink="/filme-form/{{ filme.id}}">
               <i class="fa fa-edit"></i>

@@ -105,13 +105,11 @@ export class FilmeVisualizaComponent {
         error:erro=>this.error = erro.error
     })
     }else{
-        this.service
+        this.postService
         .salvar(this.post)
-        .subscribe({
-          next: response=>this.success = true,
-          error:erro=>this.error = erro.error
-          
-      })
+        .subscribe(
+          (response)=>this.success = response,     
+      )
       console.log(this.post)
     }
   }

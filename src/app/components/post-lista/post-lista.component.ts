@@ -27,18 +27,6 @@ export class PostListaComponent {
     private postService:PostService,
     private router: Router) { }
 
-  ngOnInit(): void {
-
-    this.postService
-      .getPost()
-      .subscribe((posts: Post[]) => {
-        this.posts = posts
-        console.log(this.posts)
-      })
-
-     
-    
-  }
 
 
   postSelecionaDelecao(posts: Post) {
