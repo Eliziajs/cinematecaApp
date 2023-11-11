@@ -14,6 +14,9 @@ import { DiretorFormComponent } from './components/diretor-form/diretor-form.com
 import { HomeFerramentaComponent } from './components/home-ferramenta/home-ferramenta.component';
 import { HomeFuncionalidadesComponent } from './components/home-funcionalidades/home-funcionalidades.component';
 import { GeneroComponent } from './components/genero/genero.component';
+import { PostListaComponent } from './components/post-lista/post-lista.component';
+
+
 
 
 @NgModule({
@@ -24,6 +27,10 @@ import { GeneroComponent } from './components/genero/genero.component';
     HomeFerramentaComponent,
     HomeFuncionalidadesComponent,
     GeneroComponent,
+    PostListaComponent,
+
+
+   
      
   ],
   imports: [

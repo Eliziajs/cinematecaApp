@@ -7,6 +7,10 @@ import { Observable } from 'rxjs';
 import { Diretor } from 'src/app/domain/Diretor';
 import { Genero } from 'src/app/domain/Genero';
 import { GeneroService } from 'src/app/services/genero.service';
+import { PostService } from 'src/app/services/post.service';
+import { Post } from 'src/app/domain/Post';
+import { PostListaComponent } from '../post-lista/post-lista.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-filme-visualiza',
@@ -18,6 +22,9 @@ export class FilmeVisualizaComponent {
   @Input() filme! : Filme;
   @Input() diretor!: Diretor;
   @Input() genero!: Genero;
+  @Input() post!:Post;
+  postForms!: FormGroup;
+  
  //filme!: Filme;
   //diretor!: Diretor;
   success: boolean =false;
@@ -32,10 +39,13 @@ export class FilmeVisualizaComponent {
     private service: FilmeService, 
     private diretorService : DiretorService,
     private generoService: GeneroService,
+    private postService: PostService,
     private router: Router,
     private activatedRoute: ActivatedRoute, 
     )
-    {}
+    {
+      this.post = new Post();
+    }
 
   ngOnInit(): void {
     
@@ -76,8 +86,34 @@ export class FilmeVisualizaComponent {
         )
         }
       })
+      this.postForms = new FormGroup({
+        id: new FormControl(''),
+        mensagem: new FormControl('',[Validators.required]),
+      });
     
 
+  }
+  OnSubmit(){
+    if(this.postForms.invalid)
+    return
+  
+    if(this.id){
+      this.postService
+      .atualizar(this.post)
+      .subscribe({
+        next: response=>this.success = true,
+        error:erro=>this.error = erro.error
+    })
+    }else{
+        this.service
+        .salvar(this.post)
+        .subscribe({
+          next: response=>this.success = true,
+          error:erro=>this.error = erro.error
+          
+      })
+      console.log(this.post)
+    }
   }
 
   pegarFilmeId(filme: Filme){
@@ -92,6 +128,10 @@ export class FilmeVisualizaComponent {
 
   voltarParaLista(){
   this.router.navigate(['/filme-lista'])
+ }
+
+ get mensagem(){
+  return this.postForms.get('mensagem')!;
  }
 
 }

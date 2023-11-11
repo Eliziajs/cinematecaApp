@@ -27,23 +27,57 @@
                      </div>
           
             <br>
-            
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><p><strong><i class="fa-solid fa-paper-plane" style="color: #00ffff;"></i> Escreva seu comentário</strong></p></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-success ml-3">
-                        <i class="fa-solid fa-paper-plane"  ></i > Enviar</button>
-                
-                    <button type="submit" class="btn btn-danger ml-3" (click)="voltarParaLista()">
-                        <i class="fa fa-arrow-alt-circle-left" ></i> Voltar </button>
+            <form class="container"  (ngSubmit) = "OnSubmit()" [formGroup] = "postForms" #postForm = "ngForm">
+            <div class="form-group">
+                <div class="mb-3">
+                    <label for="nome" class="form-label"><p><strong>
+                        <i class="fa-solid fa-paper-plane" style="color: #00ffff;"></i>
+                         Escreva seu comentário</strong></p></label>
+                    <input type="text" class="form-control" id="inputMensagem" rows="3" 
+                        formControlName = "mensagem" required [(ngModel)]="post.mensagem" name="mensagem"/>
+                    
+                    <div *ngIf= "id.invalid && postForm.submitted" class="validation-error" >
+                        <p *ngIf="mensagem.errors?.['required']">Ainda não escreveu seu comentário</p>
+                    </div>
+                    <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-success ml-3">
+                            <i class="fa-solid fa-paper-plane"  ></i > Enviar</button>
+                    
+                        <button type="submit" class="btn btn-danger ml-3" (click)="voltarParaLista()">
+                            <i class="fa fa-arrow-alt-circle-left" ></i> Voltar </button>
+                    </div>
                 </div>
             </div>
-        </div>
+         </div>
+       </form>
     </div>
+    <ul class="list-group">
+        <li class=" d-flex justify-content-between align-items-center">
+          <a routerLink="/filme-visualiza/{{filme.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-3">List group item heading</h5>
+              <span class="badge badge-primary badge-pill" style="color: #f93943;">1</span>
+            </div>
+            <p class="mb-1">Donec id elit non mikkkkkkkkkkkkkkkkkkkkkkkkk porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small>Donec id elit non mi porta.</small><br>
+            <div class="mb-9">
+                <small>3 days ago</small> 
+            <small>
+                <i class="fa-regular fa-heart" style="color: #f93943;"></i>Curtir
+            </small>
+            </div>
+          </a>
+        
+        </li>
+    </ul>
 </div>
+
+    
+
+
+
     <div class="col-6 col-md-4">
         <div class="container" >
             <p></p>

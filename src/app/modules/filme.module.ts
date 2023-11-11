@@ -7,11 +7,13 @@ import { FilmeListaComponent } from '../components/filme-lista/filme-lista.compo
 import { FilmeVisualizaComponent } from '../components/filme-visualiza/filme-visualiza.component';
 
 
+
 @NgModule({
   declarations: [
     FilmeFormComponent,
     FilmeListaComponent,
     FilmeVisualizaComponent,
+   
     
    
   ],
@@ -24,7 +26,8 @@ import { FilmeVisualizaComponent } from '../components/filme-visualiza/filme-vis
   exports: [
     FilmeFormComponent,
     FilmeListaComponent,
-    FilmeVisualizaComponent
+    FilmeVisualizaComponent,
+   
    
   ] 
 })
