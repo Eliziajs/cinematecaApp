@@ -24,7 +24,7 @@ export class FilmeVisualizaComponent {
   @Input() genero!: Genero;
   @Input() post!:Post;
   postForms!: FormGroup;
-  
+  posts!:Post[];
  //filme!: Filme;
   //diretor!: Diretor;
   success: boolean =false;
@@ -48,6 +48,13 @@ export class FilmeVisualizaComponent {
     }
 
   ngOnInit(): void {
+
+    this.postForms = new FormGroup({
+      id: new FormControl(''),
+      mensagem: new FormControl('',[Validators.required]),
+      data: new FormControl('',[Validators.required]),
+    });
+  
     
       let param : Observable<Params> = this.activatedRoute.params
       param.subscribe( urlParams => {
@@ -86,11 +93,18 @@ export class FilmeVisualizaComponent {
         )
         }
       })
-      this.postForms = new FormGroup({
-        id: new FormControl(''),
-        mensagem: new FormControl('',[Validators.required]),
-      });
-    
+      let paramPost : Observable<Params> = this.activatedRoute.params
+    param.subscribe( urlParams => {
+      this.id = urlParams['id'];
+      if(this.id){
+      this.postService
+      .getPostById(this.id)
+      .subscribe(
+        response => this.post =response, 
+        errorResponse =>this.post = new Post()
+      )
+      }
+    })
 
   }
   OnSubmit(){
@@ -107,9 +121,10 @@ export class FilmeVisualizaComponent {
     }else{
         this.postService
         .salvar(this.post)
-        .subscribe(
-          (response)=>this.success = response,     
-      )
+        .subscribe({
+          next: response=>this.success = true,
+        error:erro=>this.error = erro.error     
+        })
       console.log(this.post)
     }
   }

@@ -14,13 +14,13 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
 
-  salvar (posts: Post): Observable<Post>{
+  salvar (post: Post): Observable<Post>{
     return this.http.post<Post>
-    (this.apiURL + '/post', posts)
+    (this.apiURL + '/post', post)
   }
-  atualizar(posts: Post): Observable<any>{
+  atualizar(post: Post): Observable<any>{
     return this.http.put<Post>
-    (this.apiURL + posts.id, posts)
+    (this.apiURL +'/post/'+ post.id, post)
   }
   getPost():Observable<Post[]>{
     return this.http.get<Post[]>

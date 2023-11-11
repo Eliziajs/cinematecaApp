@@ -27,55 +27,81 @@
                      </div>
           
             <br>
-            <form class="container"  (ngSubmit) = "OnSubmit()" [formGroup] = "postForms" #postForm = "ngForm">
-            <div class="form-group">
-                <div class="mb-3">
-                    <label for="nome" class="form-label"><p><strong>
-                        <i class="fa-solid fa-paper-plane" style="color: #00ffff;"></i>
-                         Escreva seu comentário</strong></p></label>
-                    <input type="text" class="form-control" id="inputMensagem" rows="3" 
-                        formControlName = "mensagem" required [(ngModel)]="post.mensagem" name="mensagem"/>
-                    
-                    <div *ngIf= "id.invalid && postForm.submitted" class="validation-error" >
-                        <p *ngIf="mensagem.errors?.['required']">Ainda não escreveu seu comentário</p>
-                    </div>
-                    <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-success ml-3">
-                            <i class="fa-solid fa-paper-plane"  ></i > Enviar</button>
-                    
-                        <button type="submit" class="btn btn-danger ml-3" (click)="voltarParaLista()">
-                            <i class="fa fa-arrow-alt-circle-left" ></i> Voltar </button>
-                    </div>
-                </div>
-            </div>
-         </div>
-       </form>
+
+          
+             <!-- eEXPERIENCIA -->
+
+<form class="container"  (ngSubmit) = "OnSubmit()" [formGroup] = "postForms" #postForm = "ngForm">
+ <div class="form-group">
+  <div clss=" row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="success==true">
+        Mensagem salva/ atualizada com sucesso! <a href="#" class="alert-link"></a>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngFor="let erro of error">
+        {{erro}} <a href="#" class="alert-link"></a>
+      </div>
     </div>
-    <ul class="list-group">
-        <li class=" d-flex justify-content-between align-items-center">
-          <a routerLink="/filme-visualiza/{{filme.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-3">List group item heading</h5>
-              <span class="badge badge-primary badge-pill" style="color: #f93943;">1</span>
-            </div>
-            <p class="mb-1">Donec id elit non mikkkkkkkkkkkkkkkkkkkkkkkkk porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small>Donec id elit non mi porta.</small><br>
-            <div class="mb-9">
-                <small>3 days ago</small> 
-            <small>
-                <i class="fa-regular fa-heart" style="color: #f93943;"></i>Curtir
-            </small>
-            </div>
-          </a>
+
+  </div>
+
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Data de cadastro</label>
+      <input type="text" class="form-control" id="inputData" 
+      formControlName = "data" required [ngModel]="post.data" name="data">
+      <div *ngIf= "id.invalid && postForm.submitted" class="validation-error" >
+      </div>
+    </div>  
+  
+  <div class="form-group">
+    <div class="mb-3">
+        <label for="nome" class="form-label"><p><strong>
+            <i class="fa-solid fa-paper-plane" style="color: #00ffff;"></i>
+             Escreva seu comentário</strong></p></label>
+        <textarea type="text" class="form-control" id="inputMensagem" rows="3" 
+            formControlName = "mensagem" required [ngModel]="post.mensagem" name="mensagem">
+        </textarea>
         
-        </li>
-    </ul>
+        <div *ngIf= "id.invalid && postForm.submitted" class="validation-error" >
+            <p *ngIf="mensagem.errors?.['required']">Ainda não escreveu seu comentário</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <button type="submit" class="btn btn-success ml-3" value="{{post}}" >
+                <i class="fa-solid fa-paper-plane"  ></i > Enviar </button>
+                  <a routerLink="/filme-visualiza"></a>
+            </div>
+        </div>
+    </div>
 </div>
-
+</div>
+</form>
     
-
+--------------------------------------------------
+</div>
+    <div>
+        <ul class="list-group" *ngFor="let post of posts">
+            <li class=" d-flex justify-content-between align-items-center">
+              <a class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <a href="#"><h6 class="mb-3"> <i class="fa-regular fa-heart" style="color: #f93943;"></i>  Curtir</h6></a>
+                  <span class="badge badge-primary badge-pill" style="color: #f93943;">1</span>
+                </div>
+                <p class="mb-1">
+                    {{post.mensagem}}
+                </p>
+               
+                <div class="mb-9">
+                    <small>{{post.data}}</small> 
+    
+                </div>
+              </a>
+            
+            </li>
+        </ul>
+        
+    </div>
+</div>
 
 
     <div class="col-6 col-md-4">
