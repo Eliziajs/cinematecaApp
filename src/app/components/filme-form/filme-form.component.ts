@@ -102,27 +102,25 @@ export class FilmeFormComponent implements OnInit{
   if(this.filmeForms.invalid)
   return
 
-  
+  if(this.id){
     this.service
     .atualizar(this.filme)
     .subscribe({
       next: response=>this.success = true,
       error:erro=>this.error = erro.error
   })
-  
+
+  }else{
       this.service
       .salvar(this.filme)
       .subscribe({
         next: response=>this.success = true,
         error:erro=>this.error = erro.error
     })
-  }
 
- /**  novoCadastroFilme(){
-    this.router.navigate(['/filme-visualiza'])
-}**/
-  voltarParaLista(){
-    this.router.navigate(['/filme-lista'])
-   }
+  }
+  this.router.navigate(['/filme-lista']);  
+}
+  
 }
 

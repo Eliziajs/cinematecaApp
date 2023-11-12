@@ -52,7 +52,7 @@ export class FilmeVisualizaComponent {
     this.postForms = new FormGroup({
       id: new FormControl(''),
       mensagem: new FormControl('',[Validators.required]),
-      data: new FormControl('',[Validators.required]),
+      data: new FormControl(''),
     });
   
     
