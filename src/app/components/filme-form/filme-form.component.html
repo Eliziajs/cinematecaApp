@@ -38,7 +38,6 @@
     </div>  
   </div>
 
-  
   <div class="col-12">
     <label for="nome" class="form-label">Título do filme *</label>
     <input type="text" class="form-control" id="inputTitulo"
@@ -48,13 +47,13 @@
      </div>
   </div>
   
-    <!--<div class="col-12" >
+   <!--<div class="col-12" >
         <label for="nome" class="form-label">Diretor *</label>
         <input type="text" class="form-control" id="inputNome" 
-        formControlName = "title" required [ngModel]="diretor.nome" name="nome">
+        formControlName = "title" required [(ngModel)]="filme.diretor" name="nome">
     </div>
-    <div *ngIf= "nomeDiretor.invalid && filmeForm.submitted" class="validation-error" >
-      <p *ngIf="nomeDiretor.errors?.['required']">Diretor é obrigatorio</p>
+    <div *ngIf= "diretor.invalid && filmeForm.submitted" class="validation-error" >
+      <p *ngIf="diretor.errors?.['required']">Diretor é obrigatorio</p>
    </div>-->
   
   
@@ -100,7 +99,7 @@
               <button type="submit" class="btn btn-primary ml-3" *ngIf="filme.id" >
                 <i class="fa fa-refresh" ></i> Atualizar </button>
             
-            <button type="submit" class="btn btn-danger ml-3" >
+            <button type="button" class="btn btn-danger ml-3" >
               <i class="fa fa-arrow-alt-circle-left" ></i> Voltar </button>
           </div>
     </div>

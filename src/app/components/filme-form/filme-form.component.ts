@@ -19,7 +19,7 @@ export class FilmeFormComponent implements OnInit{
 
   //filme!: Filme;
   @Input() filme! : Filme;
-  @Input() diretor!: Diretor;
+  //@Input() diretor!: Diretor;
   filmeForms!:FormGroup;
   diretorForms!: FormGroup;
   //diretor!: Diretor;
@@ -38,7 +38,7 @@ export class FilmeFormComponent implements OnInit{
     )
     { 
     this.filme = new Filme();
-    this.diretor = new Diretor();
+    //this.diretor = new Diretor();
    
   }
  
@@ -49,6 +49,7 @@ export class FilmeFormComponent implements OnInit{
     titulo: new FormControl('',[Validators.required]),
     ano: new FormControl('',[Validators.required]),
     sinopse: new FormControl('',[Validators.required]),
+    diretor: new FormControl('',[Validators.required]),
   });
 
     this.diretorForms = new FormGroup({
@@ -92,13 +93,14 @@ export class FilmeFormComponent implements OnInit{
  get sinopse(){
   return this.filmeForms.get('sinopse')!;
  }
- get nomeDiretor(){
+ get diretor(){
   return this.filmeForms.get('nome')!;
  }
 
 
 
  OnSubmit(){
+  console.log(this.filmeForms)
   if(this.filmeForms.invalid)
   return
 

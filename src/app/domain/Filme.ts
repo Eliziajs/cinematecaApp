@@ -9,7 +9,7 @@ export class Filme {
    ano?: number;
    sinopse?: string;
    data?: string; 
-   diretor?:Diretor[] ;
+   diretor?:Diretor[];
    
 }
     
