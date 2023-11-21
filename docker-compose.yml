@@ -1,0 +1,12 @@
+
+services:
+  cinemateaapp:
+    image: cinematecaapp
+    build: .
+    ports:
+      - 8081:80
+    volumes:
+      - /var/cache/nginx
+       #   - "4200:80"
+    #depends_on:
+    #    - backend
