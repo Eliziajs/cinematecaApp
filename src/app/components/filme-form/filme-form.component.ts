@@ -49,7 +49,7 @@ export class FilmeFormComponent implements OnInit{
     titulo: new FormControl('',[Validators.required]),
     ano: new FormControl('',[Validators.required]),
     sinopse: new FormControl('',[Validators.required]),
-    diretor: new FormControl('',[Validators.required]),
+   // diretor: new FormControl('',[Validators.required]),
   });
 
     this.diretorForms = new FormGroup({
@@ -93,9 +93,9 @@ export class FilmeFormComponent implements OnInit{
  get sinopse(){
   return this.filmeForms.get('sinopse')!;
  }
- get diretor(){
+/**  get diretor(){
   return this.filmeForms.get('nome')!;
- }
+ }**/
 
 
 

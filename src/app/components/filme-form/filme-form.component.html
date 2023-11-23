@@ -33,8 +33,7 @@
       <label for="inputCity" class="form-label">Data de cadastro</label>
       <input type="text" class="form-control" id="inputData" 
       formControlName = "data" required [ngModel]="filme.data" name="data">
-      <div *ngIf= "id.invalid && filmeForm.submitted" class="validation-error" >
-      </div>
+      
     </div>  
   </div>
 
@@ -99,7 +98,7 @@
               <button type="submit" class="btn btn-primary ml-3" *ngIf="filme.id" >
                 <i class="fa fa-refresh" ></i> Atualizar </button>
             
-            <button type="button" class="btn btn-danger ml-3" >
+            <button type="button" class="btn btn-danger ml-3" routerLink="/filme-lista" >
               <i class="fa fa-arrow-alt-circle-left" ></i> Voltar </button>
           </div>
     </div>
