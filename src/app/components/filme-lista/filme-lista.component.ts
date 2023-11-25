@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 import { Filme } from '../../domain/Filme';
 import { FilmeService } from '../../services/filme.service';
 import { Diretor } from 'src/app/domain/Diretor';
@@ -42,6 +42,9 @@ export class FilmeListaComponent implements OnInit {
         console.log(this.diretores)
       })
 
+      this.router.navigate(['/filme-lista']); 
+
+      
   }
 
   filmeSelecionaDelecao(filmes: Filme) {
@@ -63,6 +66,9 @@ export class FilmeListaComponent implements OnInit {
   }
   irParaFilmeVisualiza() {
     this.router.navigate(['/filme-visualiza'])
+  }
+  irParaFilmeLista() {
+    this.router.navigate(['/filme-lista'])
   }
 
 }

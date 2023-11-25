@@ -19,156 +19,132 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FilmeVisualizaComponent {
 
-  @Input() filme!: Filme;
+  @Input() filme! : Filme;
   @Input() diretor!: Diretor;
   @Input() genero!: Genero;
-  @Input() post!: Post;
+  @Input() post!:Post;
   postForms!: FormGroup;
-
-  //filme!: Filme;
-  posts!: Post[];
-  //filme!: Filme;
+  posts!:Post[];
+ //filme!: Filme;
   //diretor!: Diretor;
-  success: boolean = false;
+  success: boolean =false;
   error?: string[];
   id: any;
   filmeSelecionado!: Filme;
   mensagemSucesso!: string;
-  mensagemErro!: string;
+  mensagemErro!: string; 
 
 
   constructor(
-    private service: FilmeService,
-    private diretorService: DiretorService,
+    private service: FilmeService, 
+    private diretorService : DiretorService,
     private generoService: GeneroService,
     private postService: PostService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-  ) {
-    this.post = new Post();
-  }
+    private activatedRoute: ActivatedRoute, 
+    )
+    {
+      this.post = new Post();
+    }
 
   ngOnInit(): void {
 
     this.postForms = new FormGroup({
       id: new FormControl(''),
-      mensagem: new FormControl('', [Validators.required]),
+      mensagem: new FormControl('',[Validators.required]),
       data: new FormControl(''),
     });
+  
+    
+      let param : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.service
+        .getFilmeById(this.id)
+        .subscribe(
+          response => this.filme =response, 
+          errorResponse =>this.filme = new Filme()
+        )
+        }
+      })
+      let paramDir : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.diretorService
+        .getDiretorById(this.id)
+        .subscribe(
+          response => this.diretor =response, 
+          errorResponse =>this.diretor = new Diretor()
+        )
+        }
+      })
 
-
-    let param: Observable<Params> = this.activatedRoute.params
-    param.subscribe(urlParams => {
-      this.id = urlParams['id'];
-      if (this.id) {
-
-        let param: Observable<Params> = this.activatedRoute.params
-        param.subscribe(urlParams => {
-          this.id = urlParams['id'];
-          if (this.id) {
-            this.service
-              .getFilmeById(this.id)
-              .subscribe(
-                response => this.filme = response,
-                errorResponse => this.filme = new Filme()
-              )
-          }
-        })
-        let paramDir: Observable<Params> = this.activatedRoute.params
-        param.subscribe(urlParams => {
-          this.id = urlParams['id'];
-          if (this.id) {
-            this.diretorService
-              .getDiretorById(this.id)
-              .subscribe(
-                response => this.diretor = response,
-                errorResponse => this.diretor = new Diretor()
-              )
-          }
-        })
-
-        let paramGen: Observable<Params> = this.activatedRoute.params
-        param.subscribe(urlParams => {
-          this.id = urlParams['id'];
-          if (this.id) {
-            this.generoService
-              .getGeneroById(this.id)
-              .subscribe(
-                response => this.genero = response,
-                errorResponse => this.genero = new Genero()
-              )
-          }
-        })
-        this.postForms = new FormGroup({
-          id: new FormControl(''),
-          mensagem: new FormControl('', [Validators.required]),
-        });
-
+      let paramGen : Observable<Params> = this.activatedRoute.params
+      param.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+        this.generoService
         .getGeneroById(this.id)
-          .subscribe(
-            response => this.genero = response,
-            errorResponse => this.genero = new Genero()
-          )
-      }
-    })
-    let paramPost: Observable<Params> = this.activatedRoute.params
-    param.subscribe(urlParams => {
+        .subscribe(
+          response => this.genero =response, 
+          errorResponse =>this.genero = new Genero()
+        )
+        }
+      })
+      let paramPost : Observable<Params> = this.activatedRoute.params
+    param.subscribe( urlParams => {
       this.id = urlParams['id'];
-      if (this.id) {
-        this.postService
-          .getPostById(this.id)
-          .subscribe(
-            response => this.post = response,
-            errorResponse => this.post = new Post()
-          )
+      if(this.id){
+      this.postService
+      .getPostById(this.id)
+      .subscribe(
+        response => this.post =response, 
+        errorResponse =>this.post = new Post()
+      )
       }
     })
 
   }
-  OnSubmit() {
-    if (this.postForms.invalid)
-      return
-
-    if (this.id) {
+  OnSubmit(){
+    if(this.postForms.invalid)
+    return
+  
+    if(this.id){
       this.postService
-        .atualizar(this.post)
-        .subscribe({
-          next: response => this.success = true,
-          error: erro => this.error = erro.error
-        })
-    } else {
-      this.postService
+      .atualizar(this.post)
+      .subscribe({
+        next: response=>this.success = true,
+        error:erro=>this.error = erro.error
+    })
+    }else{
+        this.postService
         .salvar(this.post)
         .subscribe({
-          next: response => this.success = true,
-          error: erro => this.error = erro.error
+          next: response=>this.success = true,
+        error:erro=>this.error = erro.error     
         })
-        .subscribe({
-          next: response => this.success = true,
-          error: erro => this.error = erro.error
-        }
-
-        )
       console.log(this.post)
     }
   }
 
-  pegarFilmeId(filme: Filme) {
+  pegarFilmeId(filme: Filme){
     this.filmeSelecionado = filme;
   }
-
-
-  filmeSelecionaVisualizaFilme(filme: Filme) {
+  
+  
+  filmeSelecionaVisualizaFilme(filme: Filme){
     this.filmeSelecionado = filme;
   }
+     
 
+  voltarParaLista(){
+  this.router.navigate(['/filme-lista'])
+ }
 
-  voltarParaLista() {
-    this.router.navigate(['/filme-lista'])
-  }
-
-  get mensagem() {
-    return this.postForms.get('mensagem')!;
-  }
+ get mensagem(){
+  return this.postForms.get('mensagem')!;
+ }
 
 }
